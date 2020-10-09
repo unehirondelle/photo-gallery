@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Jumbotron from './components/jumbotron/jumbotron';
 import AuthorsList from './components/authorsList/authorsList';
+import axios from 'axios';
 
-function App() {
+export default function App() {
+
     return (
         <>
             <Jumbotron/>
             <main>
-                <AuthorsList/>
+                <AuthorsList
+                    />
             </main>
+            <footer>
+                <small>Irina Plaksina &copy; 2020</small>
+            </footer>
         </>
     );
 }
-
-export default App;

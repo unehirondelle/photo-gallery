@@ -1,9 +1,9 @@
 import React from "react";
 import './album.css';
-import Picture from "../picture/picture";
+import Carousel from "../carousel/carousel";
 
 export default function Album() {
     return (
-        <Picture/>
+        <Carousel/>
     );
 }
