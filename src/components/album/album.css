@@ -1,0 +1,12 @@
+.thumbnail {
+    width: 30%;
+    display: contents;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
