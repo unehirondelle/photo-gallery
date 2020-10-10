@@ -1,12 +1,17 @@
 .slideshow-container {
     max-width: 1000px;
-    position: relative;
+    position: absolute;
+    top: 0;
     margin: auto;
 }
 
 .current-slide {
     display: block;
     margin: auto;
+}
+
+.close {
+    float: right;
 }
 
 .prev, .next {

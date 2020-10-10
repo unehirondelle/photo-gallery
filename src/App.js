@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Jumbotron from './components/jumbotron/jumbotron';
 import AuthorsList from './components/authorsList/authorsList';
-import axios from 'axios';
 
 export default function App() {
 
