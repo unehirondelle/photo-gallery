@@ -1,17 +1,18 @@
 import React, {useState, useEffect} from "react";
 import './authorAlbumsList.css';
 import Album from "../album/album";
-import album from "../album/album";
 
-export default function AuthorAlbumsList({authors, show, setShow, currentAuthor}) {
+export default function AuthorAlbumsList({authors, showAlbumsList, targetedAuthor}) {
 
     const [albums, setAlbums] = useState([]);
+    const [showAlbum, setShowAlbum] = useState(false);
+    const [pictures, setPictures] = useState([]);
+    const [currentAlbum, setCurrentAlbum] = useState(0);
 
     useEffect(() => {
         async function getAlbums() {
             const res = await fetch('https://jsonplaceholder.typicode.com/albums');
-            const result = res.json();
-            return result;
+            return res.json();
         }
 
         getAlbums().then(res => {
@@ -21,17 +22,43 @@ export default function AuthorAlbumsList({authors, show, setShow, currentAuthor}
         });
     }, []);
 
-    return show && (
-        <>
-            {
-                albums.filter(item => item.userId === +currentAuthor).map(albumUser => (
+    useEffect(() => {
+        async function getPictures() {
+            const res = await fetch('https://jsonplaceholder.typicode.com/photos');
+            return res.json();
+        }
 
-                    <h1>
-                        {albumUser.title}
-                    </h1>
-                ))
+        getPictures().then(res => {
+            const picturesFromData = res;
+            console.log("pictures", picturesFromData);
+            setPictures(picturesFromData);
+        });
+    }, []);
+
+    return showAlbumsList && (
+        <>
+            {authors.filter(author => author.id === +targetedAuthor).map(authorId => (
+                <>
+                    <h2>{authorId.name}</h2>
+                    <h3>{authorId.title}</h3>
+                </>
+            ))}
+
+            {albums.filter(item => item.userId === +targetedAuthor).map(albumUser => (
+
+                <h5 onClick={targetAlbum}>
+                    {albumUser.title}
+                </h5>
+            ))
             }
-            <Album/>
+            <Album pictures={pictures} showAlbum={showAlbum} currentAlbum={currentAlbum} setShowAlbum={setShowAlbum}/>
         </>
     );
+
+    function targetAlbum(event) {
+        const currentAlbum = event.target.userId;
+        setShowAlbum(true);
+        setCurrentAlbum(currentAlbum);
+        return currentAlbum;
+    }
 }
