@@ -2,12 +2,12 @@ import React, {useState, useEffect} from "react";
 import './authorAlbumsList.css';
 import Album from "../album/album";
 
-export default function AuthorAlbumsList({authors, showAlbumsList, targetedAuthor}) {
+export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbumsList, targetedAuthor}) {
 
     const [albums, setAlbums] = useState([]);
     const [showAlbum, setShowAlbum] = useState(false);
     const [pictures, setPictures] = useState([]);
-    const [currentAlbum, setCurrentAlbum] = useState(0);
+    const [targetedAlbum, setTargetedAlbum] = useState(0);
 
     useEffect(() => {
         async function getAlbums() {
@@ -37,6 +37,12 @@ export default function AuthorAlbumsList({authors, showAlbumsList, targetedAutho
 
     return showAlbumsList && (
         <>
+            <button type="button" onClick={() => {
+                setShowAlbumsList(false)
+            }}>
+                Close
+            </button>
+
             {authors.filter(author => author.id === +targetedAuthor).map(authorId => (
                 <>
                     <h2>{authorId.name}</h2>
@@ -44,21 +50,21 @@ export default function AuthorAlbumsList({authors, showAlbumsList, targetedAutho
                 </>
             ))}
 
-            {albums.filter(item => item.userId === +targetedAuthor).map(albumUser => (
+            {albums.filter(album => album.userId === +targetedAuthor).map(albumUserId => (
 
-                <h5 onClick={targetAlbum}>
-                    {albumUser.title}
+                <h5 id={albumUserId.userId} onClick={targetAlbum}>
+                    {albumUserId.title}
                 </h5>
             ))
             }
-            <Album pictures={pictures} showAlbum={showAlbum} currentAlbum={currentAlbum} setShowAlbum={setShowAlbum}/>
+            <Album pictures={pictures} showAlbum={showAlbum} setShowAlbum={setShowAlbum} targetedAlbum={targetedAlbum}/>
         </>
     );
 
     function targetAlbum(event) {
-        const currentAlbum = event.target.userId;
+        const targetedAlbum = event.target.id;
         setShowAlbum(true);
-        setCurrentAlbum(currentAlbum);
-        return currentAlbum;
+        setTargetedAlbum(targetedAlbum);
+        return targetedAlbum;
     }
 }

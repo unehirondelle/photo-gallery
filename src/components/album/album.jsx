@@ -1,34 +1,28 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './album.css';
 import Carousel from "../carousel/carousel";
 
-export default function Album({pictures, showAlbum, currentAlbum, setShowAlbum}) {
+export default function Album({pictures, showAlbum, setShowAlbum, targetedAlbum}) {
 
-    let numCurrentAlbum = +currentAlbum;
     const [show, setShow] = useState(false);
     const [currentPicture, setCurrentPicture] = useState(0);
-
-    useEffect(() => {
-        setCurrentPicture(numCurrentAlbum);
-    }, [numCurrentAlbum]);
 
     return showAlbum && (
         <>
             <button type="button" onClick={() => {
                 setShowAlbum(false)
-            }}>Back
+            }}>
+                Back
             </button>
-            <div>
-                {
-                    pictures.filter(album => album.userId === numCurrentAlbum).map(item => (
-                            <button id={item.id} className='thumbnail' onClick={(e) => targetPicture(e)
-                            }>
-                                <img src={item.thumbnailUrl} id={item.id} alt={item.id}/>
-                            </button>
-                        )
-                    )
-                }
-            </div>
+            <br/>
+            {pictures.filter(picture => picture.albumId === +targetedAlbum).map(pictureAlbumId => (
+                    <button id={pictureAlbumId.id} className='thumbnail' onClick={(e) => targetPicture(e)
+                    }>
+                        <img src={pictureAlbumId.thumbnailUrl} id={pictureAlbumId.id} alt={pictureAlbumId.id}/>
+                    </button>
+                )
+            )
+            }
             <Carousel pictures={pictures} show={show} setShow={setShow} currentPicture={currentPicture}/>
         </>
     );

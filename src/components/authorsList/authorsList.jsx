@@ -5,15 +5,13 @@ import AuthorAlbumsList from "../authorAlbumsList/authorAlbumsList";
 export default function AuthorsList() {
 
     const [authors, setAuthors] = useState([]);
-    // const [showAuthorsList, setShowAuthorsList] = useState(true)
     const [showAlbumsList, setShowAlbumsList] = useState(false);
     const [targetedAuthor, setTargetedAuthor] = useState(0);
 
     useEffect(() => {
         async function getAuthors() {
             const res = await fetch('https://jsonplaceholder.typicode.com/users');
-            const result = res.json();
-            return result;
+            return res.json();
         }
 
         getAuthors().then(res => {
@@ -23,7 +21,7 @@ export default function AuthorsList() {
         });
     }, []);
 
-    return(
+    return (
         <>
             <ul>
                 {authors.map(author => (
@@ -44,7 +42,6 @@ export default function AuthorsList() {
 
     function handleTargetAuthor(event) {
         const targetedAuthor = event.target.id;
-        // setShowAuthorsList(false);
         setShowAlbumsList(true);
         setTargetedAuthor(targetedAuthor);
         return targetedAuthor;
