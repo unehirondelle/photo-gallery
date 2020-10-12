@@ -1,44 +1,41 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import './album.css';
 import Carousel from "../carousel/carousel";
 
-export default function Album() {
-    const [pictures, setPictures] = useState([]);
-    const [show, setShow] = useState(false);
+export default function Album({photos, showAlbum, setShowAlbum}) {
+
+    const [showCarousel, setShowCarousel] = useState(false);
     const [currentPicture, setCurrentPicture] = useState(0);
-    useEffect(() => {
-        async function getPictures() {
-            const res = await fetch('https://jsonplaceholder.typicode.com/photos');
-            const result = res.json();
-            return result;
-        }
+    const [albumPictureIndex, setAlbumPictureIndex] = useState(0);
 
-        getPictures().then(res => {
-            const picturesFromData = res.filter(item => item.albumId === 1);
-            console.log("pictures", picturesFromData);
-            setPictures(picturesFromData);
-        });
-    }, []);
-
-    return (
+    return showAlbum && (
         <>
-            <div>
-                {pictures.map(item => (
-                    <button id={item.id} className='thumbnail' onClick={(e) => targetPicture(e)
-                    }>
-                        <img src={item.thumbnailUrl} id={item.id} alt={item.id}/>
-                    </button>)
-                )}
-            </div>
-            <Carousel pictures={pictures} show={show} setShow={setShow} currentPicture={currentPicture}/>
+            <button type="button" onClick={() => {
+                setShowAlbum(false)
+            }}>
+                Back
+            </button>
+            <br/>
+            {
+                photos.map((photo, index) => (
+                        <button id={photo.id} key={'btn_' + photo.id} className='thumbnail' onClick={(e) => selectedPicture(e)
+                        }>
+                            <img src={photo.thumbnailUrl} id={photo.id} alt={index}/>
+                        </button>
+                    )
+                )
+            }
+            <Carousel photos={photos} showCarousel={showCarousel} setShowCarousel={setShowCarousel} currentPicture={currentPicture}
+                      albumPictureIndex={albumPictureIndex}/>
         </>
     );
 
-    function targetPicture(event) {
+    function selectedPicture(event) {
         const currentPicture = event.target.id;
-        setShow(true);
+        const albumPictureIndex = event.target.alt;
+        setShowCarousel(true);
         setCurrentPicture(currentPicture);
-        console.log('currentPicture', currentPicture);
-        return currentPicture;
+        setAlbumPictureIndex(albumPictureIndex);
+        return {currentPicture, albumPictureIndex};
     }
 }
