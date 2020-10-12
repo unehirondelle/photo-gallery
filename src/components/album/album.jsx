@@ -9,25 +9,30 @@ export default function Album({photos, showAlbum, setShowAlbum}) {
     const [albumPictureIndex, setAlbumPictureIndex] = useState(0);
 
     return showAlbum && (
-        <>
-            <button type="button" onClick={() => {
+        <div className='album-container'>
+            <button id='btn-back' type="button" onClick={() => {
                 setShowAlbum(false)
             }}>
-                Back
+                Back to Albums list
             </button>
-            <br/>
-            {
-                photos.map((photo, index) => (
-                        <button id={photo.id} key={'btn_' + photo.id} className='thumbnail' onClick={(e) => selectedPicture(e)
+
+            <ul className='album'>
+                {photos.map((photo, index) => (
+                    <li id={photo.id} key={'btn_' + photo.id}
+                        onClick={(e) => selectedPicture(e)
                         }>
+                        <figure className='album-picture'>
                             <img src={photo.thumbnailUrl} id={photo.id} alt={index}/>
-                        </button>
-                    )
-                )
-            }
-            <Carousel photos={photos} showCarousel={showCarousel} setShowCarousel={setShowCarousel} currentPicture={currentPicture}
+                            <figcaption><small>{photo.title}</small></figcaption>
+                        </figure>
+                    </li>
+                ))
+                }
+            </ul>
+            <Carousel photos={photos} showCarousel={showCarousel} setShowCarousel={setShowCarousel}
+                      currentPicture={currentPicture}
                       albumPictureIndex={albumPictureIndex}/>
-        </>
+        </div>
     );
 
     function selectedPicture(event) {

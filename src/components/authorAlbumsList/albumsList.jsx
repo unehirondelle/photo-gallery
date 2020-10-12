@@ -27,6 +27,9 @@ export default function AlbumsList({authorName, albums, showAlbumsList, setShowA
                     <li key={album.id} id={album.id} onClick={selectAlbum}>
                         [Album]:&nbsp;
                         {album.title}
+                        <br/>
+                        <p>{album.photos.length} pictures</p>
+                        <img id={album.id} src={album.photos[0].thumbnailUrl} alt={album.photos[0].id}/>
                     </li>
                 ))
                 }

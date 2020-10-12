@@ -3,6 +3,7 @@
 :root {
     --white: #F8F8FF;
     --gray: #808080;
+    --darker-gray: #adaaaa;
 }
 
 * {
@@ -13,6 +14,7 @@
 
 body {
     margin: 0;
+    background-color: var(--white);
     font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
