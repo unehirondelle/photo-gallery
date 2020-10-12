@@ -1,0 +1,13 @@
+.author-list {
+    background-color: var(--mustard);
+    grid-template-rows: 3em 1fr !important;
+    justify-items: center;
+    align-items: center;
+    grid-gap: 0 !important;
+    cursor: pointer;
+}
+
+li:hover .author-list {
+    text-decoration: underline;
+    cursor: pointer;
+}
