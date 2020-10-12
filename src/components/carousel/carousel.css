@@ -65,5 +65,7 @@
 figcaption {
     color: var(--gray);
     font-size: 12px;
+    background-color: var(--white);
+    padding: 0.5em;
 }
 

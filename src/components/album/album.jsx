@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './album.css';
 import Carousel from "../carousel/carousel";
 
-export default function Album({photos, showAlbum, setShowAlbum}) {
+export default function Album({photos, authorName, albumTitle, showAlbum, setShowAlbum}) {
 
     const [showCarousel, setShowCarousel] = useState(false);
     const [currentPicture, setCurrentPicture] = useState(0);
@@ -15,6 +15,13 @@ export default function Album({photos, showAlbum, setShowAlbum}) {
             }}>
                 Back to Albums list
             </button>
+
+            <h3 id={authorName} className='author'>
+                <u>Author:</u>&nbsp;{authorName}
+            </h3>
+            <h4 id={albumTitle}>
+                <u>Album:</u>&nbsp;{albumTitle}
+            </h4>
 
             <ul className='album'>
                 {photos.map((photo, index) => (

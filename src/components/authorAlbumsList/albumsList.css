@@ -6,3 +6,11 @@
 #albums-list {
     top: 0vh;
 }
+
+li img:hover {
+    cursor: pointer;
+}
+
+ul {
+    margin-bottom: 3vh;
+}

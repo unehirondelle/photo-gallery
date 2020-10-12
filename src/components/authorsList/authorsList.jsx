@@ -32,8 +32,7 @@ export default function AuthorsList({authors}) {
     function handleTargetAuthor(event) {
         const selectedAuthorId = event.target.id;
         setSelectedAuthor(selectedAuthorId);
-        const author = authors.filter(author => author.id === +selectedAuthorId)[0]
-
+        const author = authors.filter(author => author.id === +selectedAuthorId)[0];
         setAlbums(author.albums);
         setShowAlbumsList(true);
         setAuthorName(author.name)
