@@ -2,32 +2,44 @@ import React, {useState} from "react";
 import './album.css';
 import Carousel from "../carousel/carousel";
 
-export default function Album({photos, showAlbum, setShowAlbum}) {
+export default function Album({photos, authorName, albumTitle, showAlbum, setShowAlbum}) {
 
     const [showCarousel, setShowCarousel] = useState(false);
     const [currentPicture, setCurrentPicture] = useState(0);
     const [albumPictureIndex, setAlbumPictureIndex] = useState(0);
 
     return showAlbum && (
-        <>
-            <button type="button" onClick={() => {
+        <div id='album' className='album-container'>
+            <button id='btn-back' type="button" onClick={() => {
                 setShowAlbum(false)
             }}>
-                Back
+                Back to Albums list
             </button>
-            <br/>
-            {
-                photos.map((photo, index) => (
-                        <button id={photo.id} key={'btn_' + photo.id} className='thumbnail' onClick={(e) => selectedPicture(e)
+
+            <h3 id={authorName} className='author'>
+                <u>Author:</u>&nbsp;{authorName}
+            </h3>
+            <h4 id={albumTitle}>
+                <u>Album:</u>&nbsp;{albumTitle}
+            </h4>
+
+            <ul className='album'>
+                {photos.map((photo, index) => (
+                    <li id={photo.id} key={'btn_' + photo.id}
+                        onClick={(e) => selectedPicture(e)
                         }>
+                        <figure className='album-picture'>
                             <img src={photo.thumbnailUrl} id={photo.id} alt={index}/>
-                        </button>
-                    )
-                )
-            }
-            <Carousel photos={photos} showCarousel={showCarousel} setShowCarousel={setShowCarousel} currentPicture={currentPicture}
+                            <figcaption><small>{photo.title}</small></figcaption>
+                        </figure>
+                    </li>
+                ))
+                }
+            </ul>
+            <Carousel photos={photos} showCarousel={showCarousel} setShowCarousel={setShowCarousel}
+                      currentPicture={currentPicture}
                       albumPictureIndex={albumPictureIndex}/>
-        </>
+        </div>
     );
 
     function selectedPicture(event) {

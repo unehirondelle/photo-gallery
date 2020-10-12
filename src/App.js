@@ -24,7 +24,6 @@ export default function App() {
                         })
                     }
                 })
-                console.log('albums after', newAuthors);
                 setAuthors(newAuthors);
             })
             .catch((err) => {
@@ -39,9 +38,9 @@ export default function App() {
                 <AuthorsList authors={authors}
                 />
             </main>
-            {/*<footer>
+            <footer>
                 <small>Irina Plaksina &copy; 2020</small>
-            </footer>*/}
+            </footer>
         </>
     );
 }

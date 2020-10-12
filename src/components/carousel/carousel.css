@@ -1,8 +1,9 @@
 .slideshow-container {
     max-width: 1000px;
-    position: absolute;
-    top: 0;
-    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .current-slide {
@@ -11,20 +12,33 @@
 }
 
 .close {
-    float: right;
+    position: absolute;
+    top: 0.2em;
+    right: 0.2em;
+    padding: 0 0.2em;
+    color: var(--white);
+    font-size: larger;
+    font-weight: bold;
+    background-color: transparent;
+    border-width: 0;
+}
+
+.close:hover, .close:active, .close:focus {
+    color: var(--darker-gray);
+    cursor: pointer;
 }
 
 .prev, .next {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    padding: 10px 16px;
+    padding: 0 1em;
     color: var(--white);
     font-weight: bold;
-    font-size: 14px;
+    font-size: larger;
     transition: 0.3s ease;
-    border-radius: 50%;
     border-width: 0;
+    background-color: transparent;
 }
 
 .next {
@@ -32,7 +46,7 @@
 }
 
 .prev:hover, .next:hover {
-    background-color: var(--gray);
+    color: var(--gray);
 }
 
 .prev:focus, .next:focus {
@@ -41,14 +55,17 @@
 
 .number {
     color: var(--white);
-    font-size: 10px;
-    padding: 5px;
+    font-size: 0.8em;
+    font-weight: bolder;
+    padding: 0.8em;
     position: absolute;
     top: 0;
 }
 
-.caption {
+figcaption {
     color: var(--gray);
     font-size: 12px;
+    background-color: var(--white);
+    padding: 0.5em;
 }
 
