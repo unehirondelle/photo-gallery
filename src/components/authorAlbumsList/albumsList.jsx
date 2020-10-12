@@ -10,7 +10,7 @@ export default function AlbumsList({authorName, albums, showAlbumsList, setShowA
 
 
     return showAlbumsList && (
-        <div className='album-container'>
+        <div id='albums-list' className='album-container'>
             <button id='btn-back' type="button" onClick={() => {
                 setShowAlbumsList(false)
             }}>

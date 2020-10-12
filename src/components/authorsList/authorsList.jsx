@@ -10,12 +10,13 @@ export default function AuthorsList({authors}) {
     const [authorName, setAuthorName] = useState('');
 
     return (
-        <>
-            <ul>
+        <div className='album-container'>
+            <h3 className='author'>Authors</h3>
+            <ul className='album'>
                 {authors.map(author => (
                     <React.Fragment key={author.id}>
-                        <li id={author.id} onClick={(e) => handleTargetAuthor(e)
-                        }>[Author]: &nbsp;
+                        <li id={author.id} className='author-list album-picture' onClick={(e) => handleTargetAuthor(e)
+                        }>
                             {author.name}
                         </li>
                     </React.Fragment>
@@ -25,7 +26,7 @@ export default function AuthorsList({authors}) {
             <AlbumsList authorName={authorName} albums={albums} key={selectedAuthor} showAlbumsList={showAlbumsList}
                         setShowAlbumsList={setShowAlbumsList}
             />
-        </>
+        </div>
     );
 
     function handleTargetAuthor(event) {
