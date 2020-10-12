@@ -17,10 +17,18 @@ https://unehirondelle.github.io/photo-gallery/
 6. Each photographer, album thumbnail, and pictures are clickable and allow navigation through the app.
 7. After clicking the interested picture you can have a closer look via the carousel.
 
+## Run tests
+
+1. Make sure you have **yarn** installed
+2. Type `yarn test` to run tests execution, press `a` to run all tests
+
+Tests cover all the components of the application are rendered as expected.
+
 ## Technologies/frameworks used:
 
 1. ReactJS - main framework to build the application
 2. CSS - style personalization
+3. Jest - tests
 
 ## Components structure
 
