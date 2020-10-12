@@ -9,7 +9,7 @@ export default function Album({photos, showAlbum, setShowAlbum}) {
     const [albumPictureIndex, setAlbumPictureIndex] = useState(0);
 
     return showAlbum && (
-        <div className='album-container'>
+        <div id='album' className='album-container'>
             <button id='btn-back' type="button" onClick={() => {
                 setShowAlbum(false)
             }}>

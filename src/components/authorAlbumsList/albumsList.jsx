@@ -18,7 +18,7 @@ export default function AlbumsList({authorName, albums, showAlbumsList, setShowA
             </button>
 
 
-            <h3 id={authorName}>
+            <h3 id={authorName} className='author'>
                 Author{authorName}
             </h3>
 

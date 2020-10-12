@@ -6,6 +6,10 @@
     background-color: var(--white);
 }
 
+#album {
+    top: 0vh;
+}
+
 #btn-back {
     position: fixed;
     right: 0;
@@ -45,7 +49,7 @@ figure > img {
     object-fit: cover;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 576px) {
     .album {
         grid-auto-flow: initial;
         grid-template-columns: repeat(auto-fit, minmax(auto, 16em));
