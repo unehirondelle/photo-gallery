@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './authorsList.css';
-import AlbumsList from "../authorAlbumsList/albumsList";
+import AlbumsList from "../albumsList/albumsList";
 
 export default function AuthorsList({authors}) {
 
