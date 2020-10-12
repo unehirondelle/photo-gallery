@@ -10,14 +10,47 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
     const [targetedAlbum, setTargetedAlbum] = useState(0);
 
     useEffect(() => {
+        Promise.all([
+            fetch("https://jsonplaceholder.typicode.com/albums").then(value => value.json()),
+            fetch("https://jsonplaceholder.typicode.com/photos").then(value => value.json()),
+            fetch("https://jsonplaceholder.typicode.com/users").then(value => value.json())
+        ])
+            .then(([albums, photos, _authors]) => {
+                let all = []
+                albums.forEach(a => all.push({
+                    'album': a,
+                    'photos': photos.filter(p => p.albumId === a.id),
+                    'author': _authors.filter(au => au.id  === a.userId)[0]
+                }))
+                //json response
+                console.log('albums after', all)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        // let [albums, photos] = await Promise.all([
+        //     fetch("https://jsonplaceholder.typicode.com/albums"),
+        //     fetch("https://jsonplaceholder.typicode.com/photos")
+        // ]);
+
+        //     }))
+        //     console.log('after reconcile', albums);
+
+
         async function getAlbums() {
             const res = await fetch('https://jsonplaceholder.typicode.com/albums');
             return res.json();
         }
 
+        async function getPhotos() {
+            const res = await fetch('https://jsonplaceholder.typicode.com/photos');
+            return res.json();
+        }
+
         getAlbums().then(res => {
             const albumsFromData = res;
-            setAlbums(albumsFromData);
+
         });
     }, []);
 
@@ -32,6 +65,10 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
             setPictures(picturesFromData);
         });
     }, []);
+
+    useEffect(() => {
+
+    })
 
     return showAlbumsList && (
         <>
@@ -54,7 +91,8 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
             ))
             }
 
-            <Album pictures={pictures} showAlbum={showAlbum} setShowAlbum={setShowAlbum} targetedAlbum={targetedAlbum}/>
+            <Album pictures={pictures} showAlbum={showAlbum} setShowAlbum={setShowAlbum}
+                   targetedAlbum={targetedAlbum}/>
         </>
     );
 
