@@ -16,7 +16,6 @@ export default function AuthorsList() {
 
         getAuthors().then(res => {
             const authorsFromData = res;
-            console.log("authors", authorsFromData);
             setAuthors(authorsFromData);
         });
     }, []);

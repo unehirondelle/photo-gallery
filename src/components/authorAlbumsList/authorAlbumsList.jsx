@@ -17,7 +17,6 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
 
         getAlbums().then(res => {
             const albumsFromData = res;
-            console.log("authors", albumsFromData);
             setAlbums(albumsFromData);
         });
     }, []);
@@ -30,7 +29,6 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
 
         getPictures().then(res => {
             const picturesFromData = res;
-            console.log("pictures", picturesFromData);
             setPictures(picturesFromData);
         });
     }, []);
@@ -46,17 +44,16 @@ export default function AuthorAlbumsList({authors, showAlbumsList, setShowAlbums
             {authors.filter(author => author.id === +targetedAuthor).map(authorId => (
                 <>
                     <h2>{authorId.name}</h2>
-                    <h3>{authorId.title}</h3>
                 </>
             ))}
 
             {albums.filter(album => album.userId === +targetedAuthor).map(albumUserId => (
-
-                <h5 id={albumUserId.userId} onClick={targetAlbum}>
+                <h5 id={albumUserId.id} onClick={targetAlbum}>
                     {albumUserId.title}
                 </h5>
             ))
             }
+
             <Album pictures={pictures} showAlbum={showAlbum} setShowAlbum={setShowAlbum} targetedAlbum={targetedAlbum}/>
         </>
     );
