@@ -62,7 +62,7 @@
     top: 0;
 }
 
-.caption {
+figcaption {
     color: var(--gray);
     font-size: 12px;
 }
