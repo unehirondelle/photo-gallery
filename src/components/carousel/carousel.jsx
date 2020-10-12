@@ -19,9 +19,10 @@ export default function Carousel({photos, showCarousel, setShowCarousel, current
                 {
                     photos.filter(photo => photo.id === currentIndex).map(
                         item =>
-                            <div id={item.id} className="current-slide">
+                            <div id={item.id} key={item.id} className="current-slide">
                                 <div className="number">{currentPictureIndex} / {photos.length}</div>
-                                <button type='button' className='close' onClick={() => setShowCarousel(false)}>X</button>
+                                <button type='button' className='close' onClick={() => setShowCarousel(false)}>X
+                                </button>
                                 <button type='button' className="prev" onClick={previousPicture}>&#10094;</button>
                                 <button type='button' className="next" onClick={nextPicture}>&#10095;</button>
                                 <img src={item.url} alt={item.id}/>

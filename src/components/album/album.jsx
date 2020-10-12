@@ -18,7 +18,7 @@ export default function Album({photos, showAlbum, setShowAlbum}) {
             <br/>
             {
                 photos.map((photo, index) => (
-                        <button id={photo.id} className='thumbnail' onClick={(e) => selectedPicture(e)
+                        <button id={photo.id} key={'btn_' + photo.id} className='thumbnail' onClick={(e) => selectedPicture(e)
                         }>
                             <img src={photo.thumbnailUrl} id={photo.id} alt={index}/>
                         </button>

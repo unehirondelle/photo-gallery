@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import './albumsList.css';
 import Album from "../album/album";
 
-export default function AlbumsList({albums, showAlbumsList, setShowAlbumsList}) {
+export default function AlbumsList({authorName, albums, showAlbumsList, setShowAlbumsList}) {
 
     const [showAlbum, setShowAlbum] = useState(false);
     const [selectedAlbum, setSelectedAlbum] = useState(0);
@@ -17,18 +17,20 @@ export default function AlbumsList({albums, showAlbumsList, setShowAlbumsList}) 
                 Close
             </button>
 
-            {/*{albums.map(album => (*/}
-            {/*    <h5 id={album.id} onClick={targetAlbum}>*/}
-            {/*        {album.title}*/}
-            {/*    </h5>*/}
-            {/*)))}*/}
 
-            {albums.map(album => (
-                <h5 id={album.id} onClick={selectAlbum}>
-                    {album.title}
-                </h5>
-            ))
-            }
+            <h3 id={authorName}>
+                Author{authorName}
+            </h3>
+
+            <ol>
+                {albums.map(album => (
+                    <li key={album.id} id={album.id} onClick={selectAlbum}>
+                        [Album]:&nbsp;
+                        {album.title}
+                    </li>
+                ))
+                }
+            </ol>
 
             <Album photos={photos} showAlbum={showAlbum} setShowAlbum={setShowAlbum}
                    selectedAlbum={selectedAlbum}/>
