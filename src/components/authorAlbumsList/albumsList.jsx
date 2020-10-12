@@ -10,8 +10,8 @@ export default function AlbumsList({authorName, albums, showAlbumsList, setShowA
 
 
     return showAlbumsList && (
-        <>
-            <button type="button" onClick={() => {
+        <div className='album-container'>
+            <button id='btn-back' type="button" onClick={() => {
                 setShowAlbumsList(false)
             }}>
                 Close
@@ -22,22 +22,24 @@ export default function AlbumsList({authorName, albums, showAlbumsList, setShowA
                 Author{authorName}
             </h3>
 
-            <ol>
+            <ul id='album-list' className='album'>
                 {albums.map(album => (
                     <li key={album.id} id={album.id} onClick={selectAlbum}>
-                        [Album]:&nbsp;
-                        {album.title}
-                        <br/>
-                        <p>{album.photos.length} pictures</p>
-                        <img id={album.id} src={album.photos[0].thumbnailUrl} alt={album.photos[0].id}/>
+                        <figure className='album-picture'>
+                            <img id={album.id} src={album.photos[0].thumbnailUrl} alt={album.photos[0].id}/>
+                            <figcaption>
+                                [Album]:&nbsp; {album.title}
+                                <p>{album.photos.length} pictures</p>
+                            </figcaption>
+                        </figure>
                     </li>
                 ))
                 }
-            </ol>
+            </ul>
 
             <Album photos={photos} showAlbum={showAlbum} setShowAlbum={setShowAlbum}
                    selectedAlbum={selectedAlbum}/>
-        </>
+        </div>
     );
 
     function selectAlbum(event) {
