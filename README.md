@@ -22,7 +22,7 @@ https://unehirondelle.github.io/photo-gallery/
 1. ReactJS - main framework to build the application
 2. CSS - style personalization
 
-##Components structure
+## Components structure
 
 ![Project's diagram](./assets/pictures/photo-gallery.png)
 

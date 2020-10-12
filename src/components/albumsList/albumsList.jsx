@@ -3,7 +3,6 @@ import './albumsList.css';
 import Album from "../album/album";
 
 export default function AlbumsList({authorName, albums, showAlbumsList, setShowAlbumsList}) {
-
     const [showAlbum, setShowAlbum] = useState(false);
     const [selectedAlbum, setSelectedAlbum] = useState(0);
     const [photos, setPhotos] = useState([]);
