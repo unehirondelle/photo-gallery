@@ -1,24 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './authorsList.css';
-import AuthorAlbumsList from "../authorAlbumsList/authorAlbumsList";
+import AlbumsList from "../authorAlbumsList/albumsList";
 
-export default function AuthorsList() {
+export default function AuthorsList({authors}) {
 
-    const [authors, setAuthors] = useState([]);
     const [showAlbumsList, setShowAlbumsList] = useState(false);
-    const [targetedAuthor, setTargetedAuthor] = useState(0);
-
-    useEffect(() => {
-        async function getAuthors() {
-            const res = await fetch('https://jsonplaceholder.typicode.com/users');
-            return res.json();
-        }
-
-        getAuthors().then(res => {
-            const authorsFromData = res;
-            setAuthors(authorsFromData);
-        });
-    }, []);
+    const [selectedAuthor, setSelectedAuthor] = useState(0);
+    const [albums, setAlbums] = useState([]);
 
     return (
         <>
@@ -33,16 +21,17 @@ export default function AuthorsList() {
                 ))}
             </ul>
 
-            <AuthorAlbumsList key={authors.targetedAuthor} authors={authors} showAlbumsList={showAlbumsList}
-                              setShowAlbumsList={setShowAlbumsList}
-                              targetedAuthor={targetedAuthor}/>
+            <AlbumsList albums={albums} key={selectedAuthor} showAlbumsList={showAlbumsList}
+                        setShowAlbumsList={setShowAlbumsList}
+                        selectedAuthor={selectedAuthor} />
         </>
     );
 
     function handleTargetAuthor(event) {
-        const targetedAuthor = event.target.id;
+        const selectedAuthorId = event.target.id;
+        setSelectedAuthor(selectedAuthorId);
+        setAlbums(authors.filter(author => author.id === +selectedAuthorId)[0].albums);
         setShowAlbumsList(true);
-        setTargetedAuthor(targetedAuthor);
-        return targetedAuthor;
+        return selectedAuthorId;
     }
 }

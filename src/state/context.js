@@ -1,5 +1,5 @@
 import React from "react";
 
-export const AuthorsContext = React.createContext({});
+export const AlbumsContext = React.createContext({});
 
 export default null;
